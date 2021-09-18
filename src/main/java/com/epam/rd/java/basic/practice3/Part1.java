@@ -7,7 +7,7 @@ import java.util.Random;
 
 public class Part1 {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         StringBuilder textInFile = new StringBuilder();
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader("part1.txt"))) {
             bufferedReader.readLine();
@@ -23,14 +23,14 @@ public class Part1 {
 
         System.out.println(text);
 
-        System.out.println("\nConvert 1");
+        System.out.println("Convert 1");
         System.out.println(convert1(text));
-        System.out.println("\nConvert 2");
+        System.out.println("Convert 2"); // у тебя тут перенос строки до
         System.out.println(convert2(text));
-        //System.out.println("\nConvert 3");
-        //System.out.println(convert3(text));
-        //System.out.println("\nConvert 4");
-        //System.out.println(convert4(text));
+        System.out.println("Convert 3");
+        System.out.println(convert3(text));
+        System.out.println("\nConvert 4");
+        System.out.println(convert4(text));
     }
 
     public static String convert1(String input) {
@@ -45,12 +45,9 @@ public class Part1 {
 
     public static String convert2(String input) {
         StringBuilder result = new StringBuilder();
-        String[] sentence = input.split("\n");
+        String[] sentence = input.split("\r\n");
         for (String str : sentence) {
             String[] words = str.split(";");
-            for (String word: words) {
-                System.out.println(word);
-            }
             result.append(words[1]).append(" (email: ").append(words[2]).append(")\n");
         }
         return result.toString();
@@ -60,7 +57,7 @@ public class Part1 {
         StringBuilder resultMail = new StringBuilder();
         StringBuilder resultGog = new StringBuilder();
         StringBuilder result = new StringBuilder();
-        String[] sentence = input.split("\n");
+        String[] sentence = input.split("\r\n");
         for (String str : sentence) {
             String[] words = str.split(";");
             String word = words[2].split("@")[1];
@@ -80,7 +77,7 @@ public class Part1 {
 
     public static String convert4(String input) {
         StringBuilder result = new StringBuilder();
-        String[] sentence = input.split("\n");
+        String[] sentence = input.split("\r\n");
         Random random = new Random();
         for (String str : sentence) {
             result.append(str).append(";").append(random.nextInt(9000) + 1000).append("\n");
