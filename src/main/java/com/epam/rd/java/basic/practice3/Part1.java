@@ -1,31 +1,17 @@
 package com.epam.rd.java.basic.practice3;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.Random;
 
 public class Part1 {
 
-    public static void main(String[] args) {
-        StringBuilder textInFile = new StringBuilder();
-        try (BufferedReader bufferedReader = new BufferedReader(new FileReader("part1.txt"))) {
-            bufferedReader.readLine();
-            String value = bufferedReader.readLine();
-            while (value != null) {
-                textInFile.append(value).append(System.lineSeparator());
-                value = bufferedReader.readLine();
-            }
-        } catch (IOException e) {
-            throw new RuntimeException("Can't read file", e);
-        }
-        String text = textInFile.toString();
+    public static final String FILE_PATH = System.getProperty("user.dir") + "/part1.txt";
 
-        System.out.println(text);
+    public static void main(String[] args) {
+        String text = Util.getInput(FILE_PATH);
 
         System.out.println("Convert 1");
         System.out.println(convert1(text));
-        System.out.println("Convert 2"); // у тебя тут перенос строки до
+        System.out.println("Convert 2");
         System.out.println(convert2(text));
         System.out.println("Convert 3");
         System.out.println(convert3(text));
@@ -36,8 +22,8 @@ public class Part1 {
     public static String convert1(String input) {
         StringBuilder result = new StringBuilder();
         String[] sentence = input.split("\n");
-        for (String str : sentence) {
-            String[] words = str.split(";");
+        for (int i = 1; i < sentence.length; i++) {
+            String[] words = sentence[i].split(";");
             result.append(words[0]).append(": ").append(words[2]).append("\n");
         }
         return result.toString();
@@ -46,41 +32,42 @@ public class Part1 {
     public static String convert2(String input) {
         StringBuilder result = new StringBuilder();
         String[] sentence = input.split("\r\n");
-        for (String str : sentence) {
-            String[] words = str.split(";");
-            result.append(words[1]).append(" (email: ").append(words[2]).append(")\n");
+        for (int i = 1; i < sentence.length; i++) {
+            String[] words = sentence[i].split(";");
+            result.append(words[1])
+                    .append(" (email: ")
+                    .append(words[2])
+                    .append(")")
+                    .append(System.lineSeparator());
         }
         return result.toString();
     }
-
+    // Некоректно работает convert3
     public static String convert3(String input) {
-        StringBuilder resultMail = new StringBuilder();
-        StringBuilder resultGog = new StringBuilder();
-        StringBuilder result = new StringBuilder();
-        String[] sentence = input.split("\r\n");
-        for (String str : sentence) {
-            String[] words = str.split(";");
-            String word = words[2].split("@")[1];
-            if (word.equals("mail.com")) {
-                resultMail.append(words[0]).append(", ");
-            } else {
-                resultGog.append(words[0]).append(", ");
+        String[] lines = input.split("\r\n");
+        StringBuilder mails = new StringBuilder();
+        for (int i = 1; i < lines.length; i++) {
+            String mailInLine = lines[i].substring(lines[i].indexOf("@") + 1);
+            if (!mails.toString().contains(mailInLine)) {
+                mails.append(mailInLine).append(" ");
             }
         }
-        result.append("mail.com ==> ")
-                .append(resultMail.substring(0, resultMail.length() - 2))
-                .append("\n")
-                .append("google.com ==> ")
-                .append(resultGog.substring(0, resultGog.length() - 2));
-        return result.toString();
+        mails.toString().split(" ");
+        for (int i = 1; i < lines.length; i++) {
+            String[] words = lines[i].split(";");
+            for (String word : words) {
+                if (word.substring(word.indexOf("@") + 1))
+            }
+        }
+        return mails.toString();
     }
 
     public static String convert4(String input) {
         StringBuilder result = new StringBuilder();
         String[] sentence = input.split("\r\n");
         Random random = new Random();
-        for (String str : sentence) {
-            result.append(str).append(";").append(random.nextInt(9000) + 1000).append("\n");
+        for (int i = 1; i < sentence.length; i++) {
+            result.append(sentence[i]).append(";").append(random.nextInt(9000) + 1000).append(System.lineSeparator());
         }
         return result.toString();
     }
