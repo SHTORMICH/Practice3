@@ -2,30 +2,26 @@ package com.epam.rd.java.basic.practice3;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Scanner;
-import java.util.logging.Logger;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
 
 public class Util {
 
-    private static final Logger LOGGER = Logger.getLogger(Util.class.getName());
+    private static final String ENCODING = "Cp1251";
 
-    public static String getInput(String fileName) {
-        StringBuilder sb = new StringBuilder();
+    public static String readFile(String path) {
+        String res = null;
         try {
-            Scanner scanner = new Scanner(new File(fileName), "UTF-8");
-            while (scanner.hasNextLine()) {
-                sb.append(scanner.nextLine()).append(System.lineSeparator());
-            }
-            scanner.close();
-            return sb.toString().trim();
+            byte[] bytes = Files.readAllBytes(Paths.get(path));
+            res = new String(bytes, ENCODING);
         } catch (IOException ex) {
-            LOGGER.warning(ex.getMessage());
+            ex.printStackTrace();
         }
-        return sb.toString();
+        return res;
     }
 
+
     public static void main(String[] args) {
-        String input = Util.getInput("part1.txt");
-        System.out.println(input);
     }
 }

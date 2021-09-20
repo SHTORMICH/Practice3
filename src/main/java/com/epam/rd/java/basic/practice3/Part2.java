@@ -5,7 +5,7 @@ public class Part2 {
     public static final String FILE_PATH = System.getProperty("user.dir") + "/part2.txt";
 
     public static void main(String[] args) {
-        String text = Util.getInput(FILE_PATH);
+        String text = Util.readFile(FILE_PATH);
         System.out.println(convert(text));
 
     }
@@ -35,8 +35,13 @@ public class Part2 {
         }
         String minResult = removeDuplicates(minWords.toString());
         String maxResult = removeDuplicatesMax(maxWords.toString());
-        result.append("Min: ").append(minResult, 0, minResult.length() - 2).append("\n")
-                .append("Max: ").append(maxResult, 0, maxResult.length() - 2);
+        if (minResult.length() > 0 && maxResult.length() > 0) {
+            result.append("Min: ").append(minResult, 0, minResult.length() - 2).append("\n")
+                    .append("Max: ").append(maxResult, 0, maxResult.length() - 2);
+        } else {
+            result.append("Min: ").append("\n")
+                    .append("Max: ");
+        }
         return result.toString();
     }
 

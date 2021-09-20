@@ -8,7 +8,7 @@ public class Part1 {
     private static Random random = new Random();
 
     public static void main(String[] args) {
-        String text = Util.getInput(FILE_PATH);
+        String text = Util.readFile(FILE_PATH);
 
         System.out.println("Convert 1");
         System.out.println(convert1(text));
