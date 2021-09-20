@@ -49,7 +49,7 @@ public class Part2 {
             }
         }
 
-        String minResult = removeDuplicates(minWords.toString());
+        String minResult = removeDuplicatesMax(minWords.toString());
         String maxResult = removeDuplicatesMax(maxWords.toString());
 
         if (minResult.length() > 0 && maxResult.length() > 0) {
@@ -68,15 +68,6 @@ public class Part2 {
         for (int i = 0; i < words.length; i++) {
             if(!result.toString().contains(words[i])) {
                 result.append(words[i]).append(", ");
-            }
-        }
-        return result.toString();
-    }
-    public static String removeDuplicates(String input){
-        StringBuilder result = new StringBuilder();
-        for (int i = 0; i < input.length(); i++) {
-            if(!result.toString().contains(String.valueOf(input.charAt(i)))) {
-                result.append(input.charAt(i)).append(", ");
             }
         }
         return result.toString();

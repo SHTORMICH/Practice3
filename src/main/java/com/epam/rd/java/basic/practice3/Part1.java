@@ -11,13 +11,13 @@ public class Part1 {
         String text = Util.readFile(FILE_PATH);
 
         System.out.println("Convert 1");
-        System.out.println(convert1(text));
+        //System.out.println(convert1(text));
         System.out.println("Convert 2");
-        System.out.println(convert2(text));
+       // System.out.println(convert2(text));
         System.out.println("Convert 3");
         System.out.println(convert3(text));
         System.out.println("\nConvert 4");
-        System.out.println(convert4(text));
+        //System.out.println(convert4(text));
     }
 
     public static String convert1(String input) {
@@ -71,7 +71,7 @@ public class Part1 {
             String filterLine = domainsLine.toString().replaceAll(", $", "");
             result.append(filterLine).append(" ").append(System.lineSeparator());
         }
-        return result.toString().trim();
+        return result.toString(); //это у тебя удаляет последний пробел, на который ругается тест
     }
 
     public static String convert4(String input) {
