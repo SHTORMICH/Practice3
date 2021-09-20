@@ -42,24 +42,32 @@ public class Part1 {
         }
         return result.toString();
     }
-    // Некоректно работает convert3
+
     public static String convert3(String input) {
         String[] lines = input.split("\r\n");
-        StringBuilder mails = new StringBuilder();
+        StringBuilder domains = new StringBuilder();
+        StringBuilder result = new StringBuilder();
         for (int i = 1; i < lines.length; i++) {
             String mailInLine = lines[i].substring(lines[i].indexOf("@") + 1);
-            if (!mails.toString().contains(mailInLine)) {
-                mails.append(mailInLine).append(" ");
+            if (!domains.toString().contains(mailInLine)) {
+                domains.append(mailInLine).append(" ");
             }
         }
-        mails.toString().split(" ");
-        for (int i = 1; i < lines.length; i++) {
-            String[] words = lines[i].split(";");
-            for (String word : words) {
-                if (word.substring(word.indexOf("@") + 1))
+        String[] domainsSplit = domains.toString().split(" ");
+        for (String domain: domainsSplit) {
+            StringBuilder domainsLine = new StringBuilder();
+
+            domainsLine.append(domain).append(" ==> ");
+            for (int i = 1; i < lines.length; i++) {
+                String[] words = lines[i].split(";");
+                if (words[2].substring(words[2].indexOf("@") + 1).equals(domain)) {
+                    domainsLine.append(words[0]).append(", ");
+                }
             }
+            String filterLine = domainsLine.toString().replaceAll(", $", "");
+            result.append(filterLine).append(System.lineSeparator());
         }
-        return mails.toString();
+        return result.toString();
     }
 
     public static String convert4(String input) {
