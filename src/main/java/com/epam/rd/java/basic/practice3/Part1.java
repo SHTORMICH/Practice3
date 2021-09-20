@@ -22,7 +22,7 @@ public class Part1 {
 
     public static String convert1(String input) {
         StringBuilder result = new StringBuilder();
-        String[] sentence = input.split("\n");
+        String[] sentence = input.split(System.lineSeparator());
         for (int i = 1; i < sentence.length; i++) {
             String[] words = sentence[i].split(";");
             result.append(words[0]).append(": ").append(words[2]).append("\n");
@@ -32,7 +32,7 @@ public class Part1 {
 
     public static String convert2(String input) {
         StringBuilder result = new StringBuilder();
-        String[] sentence = input.split("\r\n");
+        String[] sentence = input.split(System.lineSeparator());
         for (int i = 1; i < sentence.length; i++) {
             String[] words = sentence[i].split(";");
             String[] name = words[1].split(" ");
@@ -48,7 +48,7 @@ public class Part1 {
     }
 
     public static String convert3(String input) {
-        String[] lines = input.split("\r\n");
+        String[] lines = input.split(System.lineSeparator());
         StringBuilder domains = new StringBuilder();
         StringBuilder result = new StringBuilder();
         for (int i = 1; i < lines.length; i++) {
@@ -69,19 +69,19 @@ public class Part1 {
                 }
             }
             String filterLine = domainsLine.toString().replaceAll(", $", "");
-            result.append(filterLine).append(" ");
+            result.append(filterLine).append(System.lineSeparator());
         }
         return result.toString().trim();
     }
 
     public static String convert4(String input) {
         StringBuilder result = new StringBuilder();
-        String[] sentence = input.split("\r\n");
+        String[] sentence = input.split(System.lineSeparator());
         int rValue;
         result.append(sentence[0]).append(";Password").append(System.lineSeparator());
         for (int i = 1; i < sentence.length; i++) {
-            rValue = random.nextInt((9999 - 1000) + 1000);
-            result.append(sentence[i]).append(";").append(rValue).append(System.lineSeparator());
+            rValue = random.nextInt(10000);
+            result.append(sentence[i]).append(";").append(String.format("%04d", rValue)).append(System.lineSeparator());
         }
         return result.toString();
     }
