@@ -68,8 +68,8 @@ public class Part1 {
                     domainsLine.append(words[0]).append(", ");
                 }
             }
-            String filterLine = domainsLine.toString().replaceAll(", $", "");
-            result.append(filterLine).append(" ");
+            String filterLine = domainsLine.toString().replaceAll(", $", "").substring(0, domainsLine.length() - 2);
+            result.append(filterLine).append(" ").append(System.lineSeparator());
         }
         return result.toString();
     }
