@@ -5,7 +5,7 @@ public class Part6 {
     public static final String FILE_PATH = System.getProperty("user.dir") + "/part6.txt";
 
     public static void main(String[] args) {
-        String text = Util.getInput(FILE_PATH);
+        String text = Util.readFile(FILE_PATH);
         System.out.println(convert(text));
     }
 
