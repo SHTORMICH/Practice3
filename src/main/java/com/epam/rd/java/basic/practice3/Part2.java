@@ -11,30 +11,13 @@ public class Part2 {
     }
 
     public static String convert(String input) {
-        String minWord = input.substring(0, input.indexOf(' '));
-        String maxWord = input.substring(0, input.indexOf(' '));
         StringBuilder minWords = new StringBuilder();
         StringBuilder maxWords = new StringBuilder();
         StringBuilder result = new StringBuilder();
         String[] lines = input.split("\r\n");
-        int minLength = minWord.length();
-        int maxLength = maxWord.length();
+        int minLength = getMinAndMaxLength(lines)[0];
+        int maxLength = getMinAndMaxLength(lines)[1];
 
-        for (String line : lines) {
-            String[] words = line.split("\\W");
-
-            for (String word : words) {
-
-                if (minWord.length() > word.length() && word.length() > 0) {
-                    minWord = word;
-                    minLength = word.length();
-                }
-                if (maxWord.length() < word.length() && word.length() > 0) {
-                    maxWord = word;
-                    maxLength = word.length();
-                }
-            }
-        }
         for (String line : lines) {
             String[] words = line.split("\\W");
 
@@ -60,6 +43,33 @@ public class Part2 {
                     .append("Max: ");
         }
         return result.toString();
+    }
+
+    public static int[] getMinAndMaxLength(String[] lines) {
+        String minWord = lines[0].substring(0, lines[0].indexOf(' '));
+        String maxWord = lines[0].substring(0, lines[0].indexOf(' '));
+        int[] minAndMax = new int[2];
+        int minLength = minWord.length();
+        int maxLength = maxWord.length();
+
+        for (String line : lines) {
+            String[] words = line.split("\\W");
+
+            for (String word : words) {
+
+                if (minWord.length() > word.length() && word.length() > 0) {
+                    minWord = word;
+                    minLength = word.length();
+                }
+                if (maxWord.length() < word.length()) {
+                    maxWord = word;
+                    maxLength = word.length();
+                }
+            }
+        }
+        minAndMax[0] = minLength;
+        minAndMax[1] = maxLength;
+        return minAndMax;
     }
 
     public static String removeDuplicatesMax(String input){

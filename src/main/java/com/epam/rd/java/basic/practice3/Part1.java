@@ -11,13 +11,13 @@ public class Part1 {
         String text = Util.readFile(FILE_PATH);
 
         System.out.println("Convert 1");
-        //System.out.println(convert1(text));
+        System.out.println(convert1(text));
         System.out.println("Convert 2");
-       // System.out.println(convert2(text));
+        System.out.println(convert2(text));
         System.out.println("Convert 3");
         System.out.println(convert3(text));
         System.out.println("\nConvert 4");
-        //System.out.println(convert4(text));
+        System.out.println(convert4(text));
     }
 
     public static String convert1(String input) {
