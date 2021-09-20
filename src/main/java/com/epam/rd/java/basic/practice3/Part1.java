@@ -69,9 +69,9 @@ public class Part1 {
                 }
             }
             String filterLine = domainsLine.toString().replaceAll(", $", "");
-            result.append(filterLine).append(" ").append(System.lineSeparator());
+            result.append(filterLine).append(" ");
         }
-        return result.toString(); //это у тебя удаляет последний пробел, на который ругается тест
+        return result.toString();
     }
 
     public static String convert4(String input) {
