@@ -80,7 +80,7 @@ public class Part1 {
         int rValue;
         result.append(sentence[0]).append(";Password").append(System.lineSeparator());
         for (int i = 1; i < sentence.length; i++) {
-            rValue = random.nextInt(9000) - 1000;
+            rValue = random.nextInt((9999 - 1000) + 1000);
             result.append(sentence[i]).append(";").append(rValue).append(System.lineSeparator());
         }
         return result.toString();
