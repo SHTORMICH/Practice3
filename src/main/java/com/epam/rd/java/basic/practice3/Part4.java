@@ -17,7 +17,7 @@ public class Part4 {
     }
 
     public static String hash(String input, String algorithm) throws NoSuchAlgorithmException {
-        MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
+        MessageDigest messageDigest = MessageDigest.getInstance(algorithm);
         messageDigest.update((input.getBytes(StandardCharsets.UTF_8)));
 
         byte[] hash = messageDigest.digest();

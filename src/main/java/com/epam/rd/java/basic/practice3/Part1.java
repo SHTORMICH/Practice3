@@ -5,7 +5,7 @@ import java.util.Random;
 public class Part1 {
 
     public static final String FILE_PATH = System.getProperty("user.dir") + "/part1.txt";
-    private static Random random = new Random();
+    private static final Random random = new Random();
 
     public static void main(String[] args) {
         String text = Util.readFile(FILE_PATH);
@@ -69,7 +69,7 @@ public class Part1 {
                 }
             }
             String filterLine = domainsLine.toString().replaceAll(", $", "");
-            result.append(filterLine).append(System.lineSeparator());
+            result.append(filterLine).append(" ").append(System.lineSeparator());
         }
         return result.toString().trim();
     }

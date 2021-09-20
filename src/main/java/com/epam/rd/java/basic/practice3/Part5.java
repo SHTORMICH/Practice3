@@ -7,12 +7,7 @@ public class Part5 {
 
     public static void main(String[] args) {
         for (int i = 1; i < 101; i++) {
-            StringBuilder builder = new StringBuilder();
-            builder.append(i)
-                    .append(SEPARATOR)
-                    .append(decimal2Roman(i))
-                    .append(SEPARATOR)
-                    .append(roman2Decimal(decimal2Roman(i)));
+            String builder = i + SEPARATOR + decimal2Roman(i) + SEPARATOR + roman2Decimal(decimal2Roman(i));
             System.out.println(builder);
         }
     }
@@ -62,7 +57,7 @@ public class Part5 {
                 return 50;
             case 'C':
                 return 100;
+            default: return -1;
         }
-        return -1;
     }
 }
