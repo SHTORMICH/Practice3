@@ -35,27 +35,27 @@ public class Part2 {
         }
         String minResult = removeDuplicates(minWords.toString());
         String maxResult = removeDuplicatesMax(maxWords.toString());
-        result.append("Min: ").append(minResult.substring(0, minResult.length() - 2)).append("\n")
-                .append("Max: ").append(maxResult.substring(0, maxResult.length() - 2));
+        result.append("Min: ").append(minResult, 0, minResult.length() - 2).append("\n")
+                .append("Max: ").append(maxResult, 0, maxResult.length() - 2);
         return result.toString();
     }
 
     public static String removeDuplicatesMax(String input){
-        String result = "";
+        StringBuilder result = new StringBuilder();
         for (int i = 0; i < input.length(); i++) {
-            if(!result.contains(input)) {
-                result += input;
+            if(!result.toString().contains(input)) {
+                result.append(input);
             }
         }
-        return result;
+        return result.toString();
     }
     public static String removeDuplicates(String input){
-        String result = "";
+        StringBuilder result = new StringBuilder();
         for (int i = 0; i < input.length(); i++) {
-            if(!result.contains(String.valueOf(input.charAt(i)))) {
-                result += input.charAt(i) + ", ";
+            if(!result.toString().contains(String.valueOf(input.charAt(i)))) {
+                result.append(input.charAt(i)).append(", ");
             }
         }
-        return result;
+        return result.toString();
     }
 }

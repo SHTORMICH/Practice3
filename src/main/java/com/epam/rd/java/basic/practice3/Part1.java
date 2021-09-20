@@ -5,6 +5,7 @@ import java.util.Random;
 public class Part1 {
 
     public static final String FILE_PATH = System.getProperty("user.dir") + "/part1.txt";
+    private static Random random = new Random();
 
     public static void main(String[] args) {
         String text = Util.getInput(FILE_PATH);
@@ -34,7 +35,10 @@ public class Part1 {
         String[] sentence = input.split("\r\n");
         for (int i = 1; i < sentence.length; i++) {
             String[] words = sentence[i].split(";");
-            result.append(words[1])
+            String[] name = words[1].split(" ");
+            result.append(name[1])
+                    .append(" ")
+                    .append(name[0])
                     .append(" (email: ")
                     .append(words[2])
                     .append(")")
@@ -48,7 +52,7 @@ public class Part1 {
         StringBuilder domains = new StringBuilder();
         StringBuilder result = new StringBuilder();
         for (int i = 1; i < lines.length; i++) {
-            String mailInLine = lines[i].substring(lines[i].indexOf("@") + 1);
+            String mailInLine = lines[i].substring(lines[i].indexOf('@') + 1);
             if (!domains.toString().contains(mailInLine)) {
                 domains.append(mailInLine).append(" ");
             }
@@ -60,22 +64,24 @@ public class Part1 {
             domainsLine.append(domain).append(" ==> ");
             for (int i = 1; i < lines.length; i++) {
                 String[] words = lines[i].split(";");
-                if (words[2].substring(words[2].indexOf("@") + 1).equals(domain)) {
+                if (words[2].substring(words[2].indexOf('@') + 1).equals(domain)) {
                     domainsLine.append(words[0]).append(", ");
                 }
             }
             String filterLine = domainsLine.toString().replaceAll(", $", "");
-            result.append(filterLine).append(System.lineSeparator());
+            result.append(filterLine).append(" ");
         }
-        return result.toString();
+        return result.toString().trim();
     }
 
     public static String convert4(String input) {
         StringBuilder result = new StringBuilder();
         String[] sentence = input.split("\r\n");
-        Random random = new Random();
+        int rValue;
+        result.append(sentence[0]).append(";Password").append(System.lineSeparator());
         for (int i = 1; i < sentence.length; i++) {
-            result.append(sentence[i]).append(";").append(random.nextInt(9000) + 1000).append(System.lineSeparator());
+            rValue = random.nextInt(9000) - 1000;
+            result.append(sentence[i]).append(";").append(rValue).append(System.lineSeparator());
         }
         return result.toString();
     }
