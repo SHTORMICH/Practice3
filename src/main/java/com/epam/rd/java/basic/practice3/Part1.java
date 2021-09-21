@@ -58,20 +58,28 @@ public class Part1 {
             }
         }
         String[] domainsSplit = domains.toString().split(" ");
-        for (String domain: domainsSplit) {
+        for (int i = 0; i < domainsSplit.length; i++) {
+
             StringBuilder domainsLine = new StringBuilder();
 
-            domainsLine.append(domain).append(" ==> ");
-            for (int i = 1; i < lines.length; i++) {
-                String[] words = lines[i].split(";");
-                if (words[2].substring(words[2].indexOf('@') + 1).equals(domain)) {
+            domainsLine.append(domainsSplit[i]).append(" ==> ");
+
+            for (int j = 1; j < lines.length; j++) {
+                String[] words = lines[j].split(";");
+
+                if (words[2].substring(words[2].indexOf('@') + 1).equals(domainsSplit[i])) {
                     domainsLine.append(words[0]).append(", ");
                 }
             }
             String filterLine = domainsLine.toString().replaceAll(", $", "");
-            result.append(filterLine).append(" ").append(System.lineSeparator());
+            if (domainsSplit[i].equals(domainsSplit[domainsSplit.length - 1])) {
+
+                result.append(filterLine).append(" ");
+            } else  {
+                result.append(filterLine).append(" ").append(System.lineSeparator());
+            }
         }
-        return result.toString(); //это у тебя удаляет последний пробел, на который ругается тест
+        return result.toString();
     }
 
     public static String convert4(String input) {

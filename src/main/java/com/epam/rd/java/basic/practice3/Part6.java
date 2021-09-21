@@ -20,19 +20,22 @@ public class Part6 {
         }
         String[] wordsArr = result.toString().split(" ");
         result = new StringBuilder();
-
-        for (String word : wordsArr) {
-            int count = -1;
-            for (String checkWord : wordsArr) {
-                if (word.equals(checkWord)) {
-                    count++;
+        for (String line : lines) {
+            String[] words = line.split(" ");
+            for (String word : words) {
+                int count = -1;
+                for (String checkWord : wordsArr) {
+                    if (word.equals(checkWord)) {
+                        count++;
+                    }
+                }
+                if (count == 0) {
+                    result.append(" ").append(word);
+                } else {
+                    result.append(" _").append(word);
                 }
             }
-            if (count == 0) {
-                result.append(" ").append(word);
-            } else {
-                result.append(" _").append(word);
-            }
+            result.append(System.lineSeparator());
         }
 
         return result.toString();
