@@ -10,14 +10,8 @@ public class Part6 {
     }
 
     public static String convert(String input) {
-        StringBuilder result = new StringBuilder();
+        StringBuilder result = splitter(input);
         String[] lines = input.split(System.lineSeparator());
-        for (String line : lines) {
-            String[] words = line.split(" ");
-            for (String word : words) {
-                result.append(word).append(" ");
-            }
-        }
         String[] wordsArr = result.toString().split(" ");
         result = new StringBuilder();
         for (String line : lines) {
@@ -30,14 +24,34 @@ public class Part6 {
                     }
                 }
                 if (count == 0) {
-                    result.append(" ").append(word);
+                    if (word.equals(words[words.length - 1])) {
+                        result.append(word);
+                    } else {
+                        result.append(word).append(" ");
+                    }
                 } else {
-                    result.append(" _").append(word);
+                    if (word.equals(words[words.length - 1])) {
+                        result.append(word);
+                    } else {
+                        result.append(word).append(" _");
+                    }
                 }
             }
             result.append(System.lineSeparator());
         }
 
         return result.toString();
+    }
+
+    public static StringBuilder splitter(String input) {
+        StringBuilder result = new StringBuilder();
+        String[] lines = input.split(System.lineSeparator());
+        for (String line : lines) {
+            String[] words = line.split(" ");
+            for (String word : words) {
+                result.append(word).append(" ");
+            }
+        }
+        return result;
     }
 }

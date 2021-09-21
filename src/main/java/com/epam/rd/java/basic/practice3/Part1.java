@@ -58,25 +58,24 @@ public class Part1 {
             }
         }
         String[] domainsSplit = domains.toString().split(" ");
-        for (int i = 0; i < domainsSplit.length; i++) {
+        for (String s : domainsSplit) {
 
             StringBuilder domainsLine = new StringBuilder();
 
-            domainsLine.append(domainsSplit[i]).append(" ==> ");
+            domainsLine.append(s).append(" ==> ");
 
             for (int j = 1; j < lines.length; j++) {
                 String[] words = lines[j].split(";");
 
-                if (words[2].substring(words[2].indexOf('@') + 1).equals(domainsSplit[i])) {
+                if (words[2].substring(words[2].indexOf('@') + 1).equals(s)) {
                     domainsLine.append(words[0]).append(", ");
                 }
             }
             String filterLine = domainsLine.toString().replaceAll(", $", "");
-            if (domainsSplit[i].equals(domainsSplit[domainsSplit.length - 1])) {
-
-                result.append(filterLine).append(" ");
-            } else  {
-                result.append(filterLine).append(" ").append(System.lineSeparator());
+            if (s.equals(domainsSplit[domainsSplit.length - 1])) {
+                result.append(filterLine);
+            } else {
+                result.append(filterLine).append(System.lineSeparator());
             }
         }
         return result.toString();
