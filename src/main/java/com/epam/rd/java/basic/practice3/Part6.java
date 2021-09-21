@@ -9,19 +9,32 @@ public class Part6 {
         System.out.println(convert(text));
     }
 
-    //Не коректно выводится
     public static String convert(String input) {
-        String firstWord = input.substring(0, input.indexOf(' '));
         StringBuilder result = new StringBuilder();
-        result.append(firstWord);
-        String[] lines = input.split("\r\n");
+        String[] lines = input.split(System.lineSeparator());
         for (String line : lines) {
             String[] words = line.split(" ");
-            for (int i = 1; i < words.length; i++) {
-                result.append(" _").append(words[i]);
+            for (String word : words) {
+                result.append(word).append(" ");
             }
-            result.append("\n");
         }
+        String[] wordsArr = result.toString().split(" ");
+        result = new StringBuilder();
+
+        for (String word : wordsArr) {
+            int count = -1;
+            for (String checkWord : wordsArr) {
+                if (word.equals(checkWord)) {
+                    count++;
+                }
+            }
+            if (count == 0) {
+                result.append(" ").append(word);
+            } else {
+                result.append(" _").append(word);
+            }
+        }
+
         return result.toString();
     }
 }

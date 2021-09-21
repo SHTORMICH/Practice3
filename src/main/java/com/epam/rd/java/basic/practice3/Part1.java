@@ -68,10 +68,10 @@ public class Part1 {
                     domainsLine.append(words[0]).append(", ");
                 }
             }
-            String filterLine = domainsLine.toString().replaceAll(", $", "");
+            String filterLine = domainsLine.toString().replaceAll(", $", "").substring(0, domainsLine.length() - 2);
             result.append(filterLine).append(" ").append(System.lineSeparator());
         }
-        return result.toString(); //это у тебя удаляет последний пробел, на который ругается тест
+        return result.toString().trim();
     }
 
     public static String convert4(String input) {
